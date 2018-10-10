@@ -38,7 +38,7 @@ class test extends Command
      */
     public function handle()
     {
-        for($i=537;$i<=1000;$i++){
+        for($i=1001;$i<=10000;$i++){
             $LewenRule = new LewenRule("http://www.lewen123.com/lewen/$i.html");
             $LewenRule->request()->get();
             sleep(1);

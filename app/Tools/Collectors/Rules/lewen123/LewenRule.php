@@ -22,6 +22,13 @@ class LewenRule extends BaseRule
     public function __construct($url)
     {
         $this->url = $url;
+
+        ini_set('display_errors', false);
+        // 使用自定义的异常处理函数来替代PHP的错误处理
+        set_error_handler(array($this,'customError'));
+        //set_exception_handler('handleException');
+        // 当PHP终止的时候（执行完成或者是遇到致命错误中止的时候）会调用FetalError方法
+        register_shutdown_function(array($this,'FetalError'));
     }
 
     public function url()
@@ -79,6 +86,7 @@ class LewenRule extends BaseRule
             BookCollectionErrorLog::create([
                 'from_url'=>$this->url(),
                 'data'=>$this->content,
+                'error'=>$e->getMessage(),
             ]);
         }
 
