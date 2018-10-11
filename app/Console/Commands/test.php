@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Tools\Collectors\Rules\lewen123\LewenRule;
-
+use App\Models\BookCollectionErrorLog;
 class test extends Command
 {
     /**
@@ -38,10 +38,18 @@ class test extends Command
      */
     public function handle()
     {
-        for($i=3823;$i<=10000;$i++){
-            $LewenRule = new LewenRule("http://www.lewen123.com/lewen/$i.html");
-            $LewenRule->request()->get();
-            //sleep(1);
+        for($i=6946;$i<=20000;$i++){
+            try{
+                $LewenRule = new LewenRule("http://www.lewen123.com/lewen/$i.html");
+                $LewenRule->request()->get();
+            }catch (\Exception $exception){
+                BookCollectionErrorLog::create([
+                    'from_url'=>"http://www.lewen123.com/lewen/$i.html",
+                    'error'=>$exception->getMessage(),
+                ]);
+            }
+
+            sleep(1);
         }
 
         dd("ok");
