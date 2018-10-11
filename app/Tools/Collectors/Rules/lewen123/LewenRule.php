@@ -38,7 +38,6 @@ class LewenRule extends BaseRule
 
     public function get(){
 
-
         list($title,$author) = $this->title();
         $desc = $this->desc();
         $txt_count = $this->txt_count();
@@ -82,7 +81,8 @@ class LewenRule extends BaseRule
             DB::commit();
             return $book;
         } catch (\Exception $e){
-            DB::rollback();//事务回滚
+            DB::rollback();//事务回滚'
+
             BookCollectionErrorLog::create([
                 'from_url'=>$this->url(),
                 'data'=>$this->content,

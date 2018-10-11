@@ -20,7 +20,7 @@ abstract class BaseRule
     public function request(){
 
         $data =file_get_contents($this->url());
-        $this->content = $data;
+        $this->content = mb_convert_encoding($data, 'UTF-8','GBK' );
         return $this;
     }
 

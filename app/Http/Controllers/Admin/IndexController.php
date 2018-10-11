@@ -19,7 +19,7 @@ class IndexController extends Controller
     //
     public function index()
     {
-        $LewenRule = new LewenRule("http://www.lewen123.com/lewen/4.html");
+        $LewenRule = new LewenRule("http://www.lewen123.com/lewen/2056.html");
         dd($LewenRule->request()->get());
 
     }
