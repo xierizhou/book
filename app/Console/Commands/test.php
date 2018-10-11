@@ -41,7 +41,7 @@ class test extends Command
         for($i=2214;$i<=10000;$i++){
             $LewenRule = new LewenRule("http://www.lewen123.com/lewen/$i.html");
             $LewenRule->request()->get();
-            sleep(1);
+            //sleep(1);
         }
 
         dd("ok");
