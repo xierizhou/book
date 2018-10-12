@@ -38,7 +38,7 @@ class test extends Command
      */
     public function handle()
     {
-        for($i=6946;$i<=20000;$i++){
+        for($i=13155;$i<=20000;$i++){
             try{
                 $LewenRule = new LewenRule("http://www.lewen123.com/lewen/$i.html");
                 $LewenRule->request()->get();
@@ -48,8 +48,8 @@ class test extends Command
                     'error'=>$exception->getMessage(),
                 ]);
             }
-
-            sleep(1);
+			usleep(300000);
+            //sleep(1);
         }
 
         dd("ok");
